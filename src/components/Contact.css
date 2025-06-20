@@ -92,3 +92,19 @@
 .contact-right button:hover {
   background: #fff000;
 }
+
+
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .contact-left, .contact-right {
+    max-width: 100%;
+    width: 100%;
+  }
+  .contact-right form {
+    padding: 1rem;
+  }
+}
