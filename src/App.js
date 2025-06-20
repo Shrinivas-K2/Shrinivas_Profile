@@ -9,6 +9,9 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Certificates from './pages/Certificates';
 import Blog from './pages/Blog';
+import MarksCard from './pages/Markscard';
+
+
 
 function App() {
   return (
@@ -19,7 +22,9 @@ function App() {
             <Home />
             <Contact />
           </>} />
-        <Route path="/education" element={<Education />} />
+        <Route path="/education" element={<> <Education /> <Contact/></>} />
+        <Route path="/marks-card/btech/:sem" element={<><MarksCard /> <Contact/></>} />
+        <Route path="/marks-card/puc/:id" element={<><MarksCard /> <Contact/></>} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/certificates" element={<Certificates />} />
         <Route path="/blog" element={<Blog />} />

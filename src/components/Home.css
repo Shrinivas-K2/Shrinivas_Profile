@@ -2,11 +2,18 @@
 
 .home-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 4rem;
   background: linear-gradient(to bottom right, #f0f2f5, #e0e7ff);
   min-height: 100vh;
+}
+
+.home-main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .home-left {
@@ -59,7 +66,7 @@ button {
 }
 
 .home-right img {
-  max-width: 300px;
+  max-width: 320px;
   border-radius: 20px;
 }
 
@@ -71,7 +78,7 @@ button {
     padding: 2rem 1rem;
     min-height: unset;
   }
-  .home-left, .home-right {
+  .home-left {
     max-width: 100%;
     width: 100%;
   }
@@ -84,9 +91,100 @@ button {
   }
 }
 
+/* Skills Marquee Section */
+.skills-section {
+  width: 100%;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #6c2cff;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  text-shadow: 0 2px 12px #e0e7ff, 0 1px 0 #fff;
+  line-height: 1.1;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #a020f0;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.skills-marquee {
+  width: 100%;
+  overflow: hidden;
+  margin: 2rem 0 0 0;
+  background: linear-gradient(to bottom right, #f0f2f5, #e0e7ff);
+  border-radius: 16px;
+  padding: 1rem 0;
+}
+
+.skills-track {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  animation: marquee 18s linear infinite;
+  width: max-content;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.skill i {
+  font-size: 48px;
+  margin-bottom: 0.5rem;
+}
+
+.skill p {
+  margin: 0;
+  font-size: 1rem;
+  color: #222;
+  font-weight: 500;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Responsive styles for Skills */
+@media (max-width: 700px) {
+  .skills-marquee {
+    padding: 0.5rem 0;
+  }
+  .skills-track {
+    gap: 1.2rem;
+  }
+  .skill {
+    min-width: 60px;
+  }
+  .skill i {
+    font-size: 32px;
+  }
+  .skill p {
+    font-size: 0.85rem;
+  }
+}
+
+
+
 @media (max-width: 600px) {
   .home-section {
     padding: 1rem 0.5rem;
+  }
+  .home-main {
+    flex-direction: column;
   }
   .home-left h1 {
     font-size: 1.5rem;
@@ -101,3 +199,4 @@ button {
     font-size: 1rem;
   }
 }
+
