@@ -1,0 +1,94 @@
+/* src/components/Contact.css */
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  background: linear-gradient(to right, #1d1c3a, #4b00ff);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 100vh; /* ensures container can grow */
+   align-items: center;
+    min-height: 100vh;  
+  
+}
+
+.contact-left, .contact-right {
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+.contact-left h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-left p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.3rem 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #fffc00;
+}
+
+.contact-right form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00000055;
+}
+
+.contact-right label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.contact-right input,
+.contact-right textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #1f1f2e;
+  color: white;
+}
+
+.contact-right button {
+  background: #fffc00;
+  color: #000;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-right button:hover {
+  background: #fff000;
+}

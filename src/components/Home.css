@@ -1,0 +1,64 @@
+/* src/components/Home.css */
+
+.home-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background: linear-gradient(to bottom right, #f0f2f5, #e0e7ff);
+  min-height: 100vh;
+}
+
+.home-left {
+  flex: 1;
+  max-width: 600px;
+}
+
+.home-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.home-left h1 span {
+  color: #2d2dff;
+}
+
+.home-left p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+button {
+  background: #a020f0;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.home-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.home-stats div {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.home-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.home-right img {
+  max-width: 300px;
+  border-radius: 20px;
+}
