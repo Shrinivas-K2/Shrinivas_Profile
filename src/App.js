@@ -12,7 +12,6 @@ import Blog from './pages/Blog';
 import MarksCard from './pages/Markscard';
 
 
-
 function App() {
   return (
     <Router>
@@ -23,8 +22,8 @@ function App() {
             <Contact />
           </>} />
         <Route path="/education" element={<> <Education /> <Contact/></>} />
-        <Route path="/marks-card/btech/:sem" element={<><MarksCard /> <Contact/></>} />
-        <Route path="/marks-card/puc/:id" element={<><MarksCard /> <Contact/></>} />
+        {/*<Route path="/marks-card/btech/:sem" element={<><MarksCard /> <Contact/></>} /> */}
+        {/*<Route path="/marks-card/puc/:id" element={<><MarksCard /> <Contact/></>} />  */}
         <Route path="/projects" element={<Projects />} />
         <Route path="/certificates" element={<Certificates />} />
         <Route path="/blog" element={<Blog />} />

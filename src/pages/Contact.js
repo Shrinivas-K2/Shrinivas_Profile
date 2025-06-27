@@ -1,9 +1,39 @@
 // src/components/Contact.js
-import React from 'react';
+//import React from 'react';
 import '../components/Contact.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import React, { useState } from "react";
 
 function Contact() {
+
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+
+  // Update form state on input change
+  const handleChange = e => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Submit handler: sends data to backend
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) setSent(true);
+      else setError("Failed to send. Try again.");
+    } catch {
+      setError("Server error. Try again.");
+    }
+  };
+
+  if (sent) return <div>Thank you for contacting us!</div>;
+
   return (
     <div className="contact-container">
       <div className="contact-left">
@@ -22,15 +52,15 @@ function Contact() {
       </div>
 
       <div className="contact-right">
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>Name</label>
-          <input type="text" placeholder="Enter your name" required />
+          <input type="text" placeholder="Enter your name"  value={form.name} onChage={handleChange} required />
 
           <label>Email</label>
-          <input type="email" placeholder="Enter your email" required />
+          <input type="email" placeholder="Enter your email" value={form.email} onChage={handleChange} required />
 
           <label>Message</label>
-          <textarea rows="5" placeholder="Enter your message" required />
+          <textarea rows="5" name="message" placeholder="Enter your message" value={form.message} onChage={handleChange} required />
 
           <button type="submit">Send Message</button>
         </form>
