@@ -20,7 +20,7 @@ function Home() {
             <div className="home-stats">
                 <div><h2>3 Y.</h2><p>Experience</p></div>
                 <div><h2>15+</h2><p>Projects Completed</p></div>
-               // <div><h2>10+</h2><p>Happy Clients</p></div>
+                <div><h2></h2><p></p></div>
             </div>
             </div>
             <div className="home-right">
