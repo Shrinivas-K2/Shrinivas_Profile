@@ -24,9 +24,9 @@ function App() {
         <Route path="/education" element={<> <Education /> <Contact/></>} />
         {/*<Route path="/marks-card/btech/:sem" element={<><MarksCard /> <Contact/></>} /> */}
         {/*<Route path="/marks-card/puc/:id" element={<><MarksCard /> <Contact/></>} />  */}
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/certificates" element={<Certificates />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/projects" element={<> <Projects /> <Contact/> </>} />
+        <Route path="/certificates" element={<> <Certificates /> <Contact/> </>} />
+        <Route path="/blog" element={<> <Blog /> <Contact/> </>} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
