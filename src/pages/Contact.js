@@ -1,7 +1,7 @@
-// src/components/Contact.js
 import '../components/Contact.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import React, { useState } from "react";
+import emailjs from "emailjs-com"; // install with: npm install emailjs-com
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -13,24 +13,35 @@ function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Submit handler: sends data to backend
+  // Submit handler: sends email via EmailJS
   const handleSubmit = async e => {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) setSent(true);
-      else setError("Failed to send. Try again.");
-    } catch {
+      const result = await emailjs.send(
+        "service_lzqflim",     // replace with your EmailJS service ID
+        "template_8f1h0xe",    // replace with your EmailJS template ID
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          to_email: "shrinivaskshreeni@gmail.com"
+        },
+        "LUwADfHLFjSWCpttr"      // replace with your EmailJS public key
+      );
+
+      if (result.status === 200) {
+        setSent(true);
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setError("Failed to send. Try again.");
+      }
+    } catch (err) {
       setError("Server error. Try again.");
     }
   };
 
-  if (sent) return <div>Thank you for contacting us!</div>;
+  if (sent) return <div style={{ textAlign: "center", padding: "2rem" }}>✅ Thank you for contacting us!</div>;
 
   return (
     <div className="contact-container">
