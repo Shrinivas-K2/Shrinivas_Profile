@@ -27,7 +27,7 @@ function Navbar() {
 
      const showResume= () => {
       // Replace the URL below with the page you want to redirect to
-      window.location.href = "https://drive.google.com/file/d/1UNx3Apu_GPTHbyOr72L6y6GMEXinYApM/view?usp=drive_link"; 
+      window.location.href = " https://drive.google.com/drive/folders/1sMBZ5yN3p9M8P5hSXdDdDPdRMfgW09qP"; 
     };
   return (
     <nav className={`floating-navbar${show ? '' : ' navbar-hidden'}`}>
