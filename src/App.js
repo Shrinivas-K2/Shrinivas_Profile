@@ -18,8 +18,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={ <>
-            <Home />
-            <Contact />
+           <Home />
+           <Education />
+           <Projects />
+           <Certificates />
+          <Blog />
+          <Contact/>
+    
+            
+            
           </>} />
         <Route path="/education" element={<> <Education /> <Contact/></>} />
         {/*<Route path="/marks-card/btech/:sem" element={<><MarksCard /> <Contact/></>} /> */}
