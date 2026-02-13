@@ -27,7 +27,7 @@ const ProjectsPage = () => {
       title: "Portfolio Website",
       description: "Personal portfolio website showcasing my projects and skills. Built with modern web technologies and responsive design principles.",
       category: "web",
-      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design", "ReactJS" , "NodeJS" , " MangoDB"],
+      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design", "ReactJS" , "NodeJS" , " MongoDB"],
       image: "/assets/Protfolio.png",
       demoUrl: "https://shrinivas-profile-r8k2ekv2j-srinivasa-ks-projects.vercel.app",
       githubUrl: "https://github.com/Shrinivas-K2/Shrinivas_Profile",
@@ -147,7 +147,7 @@ const ProjectsPage = () => {
       technologies: ["C++", "Jenkins", "CI/CD", "DevOps", "Automation"],
       image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=500&h=300&fit=crop",
       demoUrl: "#",
-      githubUrl: "https://github.com/Shrinivas-K2/PES2UG22CS577_Jenkis",
+      githubUrl: "https://github.com/Shrinivas-K2/PES2UG22CS577_Jenkins",
       date: "2025",
       featured: false,
       stats: { stars: 0, forks: 0 }

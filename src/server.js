@@ -1,35 +1,60 @@
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+const express = require('express');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 1. UPDATE THESE TWO LINES WITH YOUR INFO:
+const {
+  MAIL_USER,
+  MAIL_PASS,
+  MAIL_TO = 'shrinivaskshreeni@gmail.com',
+  PORT = 5000,
+} = process.env;
+
+if (!MAIL_USER || !MAIL_PASS) {
+  console.warn('Missing MAIL_USER or MAIL_PASS. Set them in your environment to send mail.');
+}
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
-    user: "shrinivaskshreeni@gmail.com",      // <-- Replace with your Gmail address
-    pass: "Shreeni@2004",         // <-- Replace with your Gmail App Password (not your main password)
+    user: MAIL_USER,
+    pass: MAIL_PASS,
   },
 });
 
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true, service: 'contact-api' });
+});
 
-app.post("/api/contact", async (req, res) => {
+app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ success: false, error: 'All fields are required.' });
+  }
+
+  if (!MAIL_USER || !MAIL_PASS) {
+    return res.status(500).json({
+      success: false,
+      error: 'Email server not configured. Set MAIL_USER and MAIL_PASS.',
+    });
+  }
+
   try {
     await transporter.sendMail({
-      from: "shrinivaskshreeni@gmail.com",    // <-- Replace with your Gmail address
-      to: "shrinivaskshreeni@gmail.com",      // <-- Replace with your Gmail address
-      subject: "New Contact Form Submission",
+      from: MAIL_USER,
+      to: MAIL_TO,
+      subject: `Portfolio inquiry from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
-    res.json({ success: true });
+
+    return res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    return res.status(500).json({ success: false, error: err.message });
   }
 });
 
-const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

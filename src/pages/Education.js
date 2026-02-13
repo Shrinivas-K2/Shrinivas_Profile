@@ -31,7 +31,7 @@ const educationData = [
     school: "Govt PU College, Kallihal, Shivamogga",
     marks: "Marks: 92%",
     desc: "A well-established government college offering quality education in science and arts streams.",
-    img: "/assets/High_school.jpeg",
+    img: "/assets/High_School.jpeg",
     subjects: [
       "Physics",
       "Chemistry",
@@ -44,7 +44,7 @@ const educationData = [
     school: "Govt High School, Holehonnuru, Shivamogga",
     marks: "Marks: 90%",
     desc: "A rural high school fostering disciplined learning with traditional values and modern practices.",
-   img: "/assets/High_school.jpeg",
+   img: "/assets/High_School.jpeg",
    subjects: [
       "Science",
       "Mathematics",
@@ -66,7 +66,7 @@ function Education() {
     }else if (course === "Pre-University (PUC)") {
     navigate(`/marks-card/puc/0`); // 0 for PUC
   } else if (course === "High School") {
-    navigate(`/marks-card/9`); // 9 for High School (add data in marksData if needed)
+    navigate(`/marks-card/puc/1`); // 1 for High School
   }
 };
   return (

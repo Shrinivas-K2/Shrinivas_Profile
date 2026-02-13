@@ -8,32 +8,21 @@ import Education from './pages/Education';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Certificates from './pages/Certificates';
-import Blog from './pages/Blog';
+import Experience from './pages/Experience';
 import MarksCard from './pages/Markscard';
-
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={ <>
-           <Home />
-           <Education />
-           <Projects />
-           <Certificates />
-          <Blog />
-          <Contact/>
-    
-            
-            
-          </>} />
-        <Route path="/education" element={<> <Education /> <Contact/></>} />
-        {/*<Route path="/marks-card/btech/:sem" element={<><MarksCard /> <Contact/></>} /> */}
-        {/*<Route path="/marks-card/puc/:id" element={<><MarksCard /> <Contact/></>} />  */}
-        <Route path="/projects" element={<> <Projects /> <Contact/> </>} />
-        <Route path="/certificates" element={<> <Certificates /> <Contact/> </>} />
-        <Route path="/blog" element={<> <Blog /> <Contact/> </>} />
+        <Route path="/" element={<><Home /><Contact /></>} />
+        <Route path="/education" element={<><Education /><Contact /></>} />
+        <Route path="/marks-card/btech/:sem" element={<><MarksCard /><Contact /></>} />
+        <Route path="/marks-card/puc/:id" element={<><MarksCard /><Contact /></>} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/certificates" element={<Certificates />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>

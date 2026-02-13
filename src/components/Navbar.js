@@ -1,34 +1,31 @@
-//import React from 'react';
 import { Link } from 'react-router-dom';
 import '../components/Navbar.css';
 import React, { useState, useEffect } from 'react';
 
 function Navbar() {
-
-
   const [show, setShow] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
       if (window.scrollY < lastScrollY) {
-        setShow(true); // scrolling up
+        setShow(true);
       } else if (window.scrollY > lastScrollY) {
-        setShow(false); // scrolling down
+        setShow(false);
       }
-      setLastScrollY(window.scrollY);
+
+      lastScrollY = window.scrollY;
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
+  const showResume = () => {
+    window.open('https://drive.google.com/file/d/180PDKL--cvxJRDcihvTSzmi2Qs-AGRFm/view?usp=sharing', '_blank', 'noopener,noreferrer');
+  };
 
-
-     const showResume= () => {
-      // Replace the URL below with the page you want to redirect to
-      window.location.href = " https://drive.google.com/drive/folders/1sMBZ5yN3p9M8P5hSXdDdDPdRMfgW09qP"; 
-    };
   return (
     <nav className={`floating-navbar${show ? '' : ' navbar-hidden'}`}>
       <div className="navbar-left">
@@ -38,8 +35,8 @@ function Navbar() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/education">Education</Link></li>
         <li><Link to="/projects">Projects</Link></li>
+        <li><Link to="/experience">Experience</Link></li>
         <li><Link to="/certificates">Certificates</Link></li>
-        <li><Link to="/blog">Blog</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><button className="demo-btn" onClick={showResume}>Get Resume</button></li>
       </ul>

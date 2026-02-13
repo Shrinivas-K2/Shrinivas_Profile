@@ -1,57 +1,81 @@
 import '../components/Contact.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
-import React, { useState } from "react";
-import emailjs from "emailjs-com"; // install with: npm install emailjs-com
+import React, { useState } from 'react';
 
 function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || '';
 
-  // Update form state on input change
-  const handleChange = e => {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Submit handler: sends email via EmailJS
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    try {
-      const result = await emailjs.send(
-        "service_lzqflim",     // replace with your EmailJS service ID
-        "template_8f1h0xe",    // replace with your EmailJS template ID
-        {
-          from_name: form.name,
-          from_email: form.email,
-          message: form.message,
-          to_email: "shrinivaskshreeni@gmail.com"
-        },
-        "LUwADfHLFjSWCpttr"      // replace with your EmailJS public key
-      );
+    setError('');
+    setSent(false);
 
-      if (result.status === 200) {
-        setSent(true);
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        setError("Failed to send. Try again.");
+    const directUrl = 'http://localhost:5000/api/contact';
+    const proxyUrl = '/api/contact';
+    const configuredUrl = apiBaseUrl ? `${apiBaseUrl}/api/contact` : '';
+
+    const targets = configuredUrl ? [configuredUrl] : [directUrl, proxyUrl];
+
+    try {
+      let res = null;
+      let lastError = null;
+      let apiErrorMessage = '';
+
+      for (const url of targets) {
+        try {
+          res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(form),
+          });
+
+          if (!res.ok) {
+            try {
+              const body = await res.json();
+              apiErrorMessage = body.error || '';
+            } catch {
+              apiErrorMessage = '';
+            }
+          }
+
+          if (res.ok) break;
+        } catch (err) {
+          lastError = err;
+        }
       }
-    } catch (err) {
-      setError("Server error. Try again.");
+
+      if (res && res.ok) {
+        setSent(true);
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        if (lastError) {
+          setError('Contact server is not reachable. Start backend on port 5000.');
+          return;
+        }
+        setError(apiErrorMessage || 'Failed to send (API returned an error).');
+      }
+    } catch {
+      setError('Server error. Try again.');
     }
   };
-
-  if (sent) return <div style={{ textAlign: "center", padding: "2rem" }}>✅ Thank you for contacting us!</div>;
 
   return (
     <div className="contact-container">
       <div className="contact-left">
-        <h2>I’d Love to Hear<br />From You</h2>
-        <p>Whether it’s feedback, ideas, or just a hello — I am here.</p>
+        <h2>I'd Love to Hear<br />From You</h2>
+        <p>Whether it's feedback, ideas, or just a hello, I am here.</p>
         <div className="contact-info">
-          <p><FaEnvelope /> shrinivaskshreeni@mail.com</p>
-          <p><FaPhone /> (+91) 6362507433 </p>
-          <p><FaMapMarkerAlt /> Electronic City, Bengaluru, Karnataka </p>
+          <p><FaEnvelope /> shrinivaskshreeni@gmail.com</p>
+          <p><FaPhone /> (+91) 6362507433</p>
+          <p><FaMapMarkerAlt /> Electronic City, Bengaluru, Karnataka</p>
         </div>
         <div className="social-icons">
           <a href="https://www.linkedin.com/in/shrinivas-k-093a17244/" target="_blank" rel="noreferrer"><FaLinkedin /></a>
@@ -61,47 +85,24 @@ function Contact() {
       </div>
 
       <div className="contact-right">
-        {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Enter your name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Enter your name" value={form.name} onChange={handleChange} required />
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Enter your email" value={form.email} onChange={handleChange} required />
 
-          <label htmlFor="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            placeholder="Enter your message"
-            value={form.message}
-            onChange={handleChange}
-            required
-          />
+          <label>Message</label>
+          <textarea rows="5" name="message" placeholder="Enter your message" value={form.message} onChange={handleChange} required />
 
           <button type="submit">Send Message</button>
+          {sent && <p>Thank you. Your inquiry has been sent.</p>}
+          {error && <p>{error}</p>}
         </form>
       </div>
 
-      <div style={{ width: "100%", textAlign: "center", marginTop: "2rem", color: "#ccc", fontSize: "0.95rem" }}>
-        © {new Date().getFullYear()} Shrinivas. All rights reserved.
+      <div style={{ width: '100%', textAlign: 'center', marginTop: '2rem', color: '#ccc', fontSize: '0.95rem' }}>
+        &copy; {new Date().getFullYear()} Shrinivas. All rights reserved.
       </div>
     </div>
   );
