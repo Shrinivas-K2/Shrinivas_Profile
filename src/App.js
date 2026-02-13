@@ -9,7 +9,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Certificates from './pages/Certificates';
 import Experience from './pages/Experience';
-import MarksCard from './pages/Markscard';
+// import MarksCard from './pages/Markscard';
 
 function App() {
   return (
