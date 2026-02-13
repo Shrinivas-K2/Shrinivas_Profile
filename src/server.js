@@ -18,11 +18,16 @@ if (!MAIL_USER || !MAIL_PASS) {
 }
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: MAIL_USER,
     pass: MAIL_PASS,
   },
+  connectionTimeout: 20000,
+  greetingTimeout: 15000,
+  socketTimeout: 20000,
 });
 
 app.get('/api/health', (_req, res) => {
