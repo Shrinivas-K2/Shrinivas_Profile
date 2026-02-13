@@ -25,11 +25,14 @@ function Contact() {
       window.location.hostname === 'localhost' ||
       window.location.hostname === '127.0.0.1';
 
+    if (!configuredUrl && !isLocalDev) {
+      setError('Frontend API URL is not configured. Set REACT_APP_API_BASE_URL in Vercel and redeploy.');
+      return;
+    }
+
     const targets = configuredUrl
       ? [configuredUrl]
-      : isLocalDev
-        ? [directUrl, proxyUrl]
-        : [proxyUrl];
+      : [directUrl, proxyUrl];
 
     try {
       let res = null;
