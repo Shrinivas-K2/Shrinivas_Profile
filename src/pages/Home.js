@@ -16,9 +16,8 @@ function Home() {
             Say Hello!
           </button>
           <div className="home-stats">
-            <div><h2>0.6 Y.</h2><p>Experience</p></div>
+            <div><h2>Fresher</h2><p>Experience</p></div>
             <div><h2>15+</h2><p>Projects Completed</p></div>
-            <div><h2>4th Yr</h2><p>Education Status</p></div>
           </div>
         </div>
         <div className="home-right">
