@@ -31,7 +31,6 @@ function Navbar() {
   return (
     <nav className={`floating-navbar${show ? '' : ' navbar-hidden'}`}>
       <div className="navbar-left">
-        <img src="/logo192.png" alt="Logo" className="logo" />
         <button
           className="menu-toggle"
           type="button"

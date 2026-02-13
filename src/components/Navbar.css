@@ -22,15 +22,9 @@
 .navbar-left {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: auto;
   min-width: auto;
-}
-
-.logo {
-  height: 34px;
-  width: 34px;
-  border-radius: 8px;
 }
 
 .menu-toggle {
@@ -190,6 +184,12 @@
 
   .navbar-left {
     width: 100%;
+    justify-content: flex-start;
+    gap: 0.55rem;
+  }
+
+  .navbar-left .menu-toggle {
+    order: 1;
   }
 
   .menu-toggle {
@@ -235,8 +235,4 @@
     padding: 0.55rem;
   }
 
-  .logo {
-    height: 31px;
-    width: 31px;
-  }
 }

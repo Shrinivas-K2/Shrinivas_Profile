@@ -36,3 +36,9 @@ Notes:
 ```bash
 npm run build
 ```
+
+
+MAIL_USER = shrinivaskshreeni@gmail.com
+MAIL_PASS = your new Gmail app password (no spaces)
+MAIL_TO = shrinivaskshreeni@gmail.com
+PORT = 5000 (optional; Render can also inject its own)
