@@ -6,7 +6,7 @@ const experiences = [
     role: 'Software Engineer Intern (Virtual)',
     duration: '2 Months',
     company: 'Maincrat Technologies',
-    period: '2024',
+    period: 'Jun 2024 - Aug 2024 ',
     focus: 'Backend Engineering',
     highlights: [
       'Worked on backend fundamentals, including REST APIs, HTTP methods, and client-server architecture.',
@@ -20,7 +20,7 @@ const experiences = [
     role: 'Full Stack Development Intern (Virtual)',
     duration: '4 Months',
     company: 'Oasis InfoByte',
-    period: '2024',
+    period: 'Jun 2025 - Sep 2025',
     focus: 'Full Stack Development',
     highlights: [
       'Built full-stack applications covering frontend UI, backend business logic, and database integration.',

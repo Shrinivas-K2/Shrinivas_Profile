@@ -21,8 +21,15 @@ function Contact() {
     const directUrl = 'http://localhost:5000/api/contact';
     const proxyUrl = '/api/contact';
     const configuredUrl = apiBaseUrl ? `${apiBaseUrl}/api/contact` : '';
+    const isLocalDev =
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1';
 
-    const targets = configuredUrl ? [configuredUrl] : [directUrl, proxyUrl];
+    const targets = configuredUrl
+      ? [configuredUrl]
+      : isLocalDev
+        ? [directUrl, proxyUrl]
+        : [proxyUrl];
 
     try {
       let res = null;
@@ -57,7 +64,7 @@ function Contact() {
         setForm({ name: '', email: '', message: '' });
       } else {
         if (lastError) {
-          setError('Contact server is not reachable. Start backend on port 5000.');
+          setError('Contact server is not reachable. Check backend URL and deployment.');
           return;
         }
         setError(apiErrorMessage || 'Failed to send (API returned an error).');
