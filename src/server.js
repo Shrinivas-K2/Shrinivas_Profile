@@ -29,6 +29,10 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, service: 'contact-api' });
 });
 
+app.get('/', (_req, res) => {
+  res.send('Portfolio API is running');
+});
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
