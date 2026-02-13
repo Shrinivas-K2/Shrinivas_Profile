@@ -41,11 +41,15 @@ if (!MAIL_USER || !MAIL_PASS) {
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false,
+  requireTLS: true,
   auth: {
     user: MAIL_USER,
     pass: MAIL_PASS,
+  },
+  tls: {
+    servername: 'smtp.gmail.com',
   },
   connectionTimeout: 20000,
   greetingTimeout: 15000,
